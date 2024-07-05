@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.gameName {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    font-family: "Rubik", sans-serif;
+    margin: 8%;
+}
+
+.stats {
+    /* background-color: red; */
+}
+
+.stats .profile-stats {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.stats .profile-stats .picture {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #b6b6b6;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.wrapper > * {
+    margin: 5px 10px;
+}
+
+.wrapper .level {
+    width: 30%;
+    font-size: 15px;
+    text-align: end;
+}
+
+.wrapper .level .progressBar {
+    width: 100%;
+    height: 10px;
+    background-color: #313131;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.wrapper .level .progress {
+    width: 80%;
+    height: 10px;
+    background: linear-gradient(90deg,#ADEEA1, #DB95DB, #4C0099);
+    border-radius: 0 15px 15px 0; 
+}
+
+.wrapper .child-wrapper {
+    width: 60%;
+    height: 50px;
+    background-color: #313131;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wrapper .child-wrapper > * {
+    padding: 0 20px;
+    flex: 2;
+}
+
+.wrapper .child-wrapper .profit {
+    border-right: 1px solid #969080;
+}
+
+.wrapper .child-wrapper .settings {
+    flex: 1;
+    font-weight: 900;
+    font-size: 25px;
+}
+
+.wrapper .child-wrapper p {
+    color: #969080;
+    font-size: smaller;
+}
+/* 2222222222222222222222 */
+
+.main {
+    margin-top: 20px;
+    width: 100%;
+    height: 100vh;
+    background-color: #1C2023;
+    border-top: 2px solid #DEB43F;
+    box-shadow: 0 -20px 100px 1px #DEB43F;
+    border-radius: 50px 50px 0 0;
+}
+
+.main .navigation {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.main .navigation .quest {
+    background-color: #313131;
+    width: 115px;
+    height: 115px;
+    border-radius: 10px;
+    border-top: 2px solid #ADEEA1;
+}

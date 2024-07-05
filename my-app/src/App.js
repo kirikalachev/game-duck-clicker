@@ -1,7 +1,6 @@
 import './App.css';
 import Stats from './stats.js';
 import Clicker from './clicker.js';
-import Navigation from './navigation.js';
 
 function App() {
   return (
@@ -11,7 +10,6 @@ function App() {
       </div>
       <Stats />
       <Clicker />
-      <Navigation />
     </div>
   );
 }
