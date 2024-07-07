@@ -5,10 +5,13 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
 }
 
 body {
     background-color: black;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .gameName {
@@ -20,105 +23,179 @@ body {
 }
 
 .stats {
-    /* background-color: red; */
+    display: flex;
+    /* border: 2px solid red; */
+    margin: 5% 10%;
 }
 
 .stats .profile-stats {
     display: flex;
     align-items: center;
-    margin: 10px;
+}
+
+.stats .profile-stats .name {
+    font-size: 15px;
+}
+
+.stats > *{
+    flex: 1;
 }
 
 .stats .profile-stats .picture {
     margin-right: 10px;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 10px;
-    background-color: #b6b6b6;
+    background-color: #6B6B6B;
 }
 
-.wrapper {
+.level {
     display: flex;
-}
-
-.wrapper > * {
-    margin: 5px 10px;
-}
-
-.wrapper .level {
-    width: 30%;
+    align-items: center;
+    flex-wrap: wrap;
     font-size: 15px;
     text-align: end;
 }
 
-.wrapper .level .progressBar {
+.level > * {
+    flex: 100%;
+}
+
+.level p {
+    position: relative;
+    top: 5px;
+}
+
+.level .progressBar {
     width: 100%;
-    height: 10px;
+    height: 15px;
     background-color: #313131;
     border-radius: 15px;
     overflow: hidden;
     margin-top: 5px;
 }
 
-.wrapper .level .progress {
+.level .progress {
     width: 80%;
-    height: 10px;
-    background: linear-gradient(90deg,#ADEEA1, #DB95DB, #4C0099);
+    height: 15px;
+    background: linear-gradient(90deg,#A1EEEE, #DBD095, #99006E);
     border-radius: 0 15px 15px 0; 
 }
 
-.wrapper .child-wrapper {
-    width: 60%;
-    height: 50px;
-    background-color: #313131;
-    border-radius: 25px;
+
+
+
+.main {
+    margin-top: 10%;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    box-shadow: 0 0px 120px 30px #be519f;
+    background: linear-gradient(#000F2C, #000F2C, #003292);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.main .menu {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 38px;
+    position: relative;
+    top: 38px;
+}
+
+.main .menu > * {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 28px;
+    padding: 5px;
+}
+
+.main .menu .info {
+    width: 50%;
+    display: flex;
     align-items: center;
+    justify-content: space-evenly;
+}
+
+.main .menu .info > * {
     text-align: center;
 }
 
-.wrapper .child-wrapper > * {
-    padding: 0 20px;
-    flex: 2;
+.main .menu .info .border {
+    height: 40px;
+    width: 2px;
+    background-color: white;
 }
 
-.wrapper .child-wrapper .profit {
-    border-right: 1px solid #969080;
+.main .menu .info h6 {
+    font-size: 12px;
+    margin-bottom: 3px;
 }
 
-.wrapper .child-wrapper .settings {
-    flex: 1;
-    font-weight: 900;
-    font-size: 25px;
+.main .menu .info p {
+    font-size: 18px;
 }
 
-.wrapper .child-wrapper p {
-    color: #969080;
-    font-size: smaller;
-}
-/* 2222222222222222222222 */
-
-.main {
-    margin-top: 20px;
-    width: 100%;
-    height: 100vh;
-    background-color: #1C2023;
-    border-top: 2px solid #DEB43F;
-    box-shadow: 0 -20px 100px 1px #DEB43F;
-    border-radius: 50px 50px 0 0;
-}
-
-.main .navigation {
+.main .menu .navigation {
+    width: 42%;
     display: flex;
-    justify-content: space-between;
-    margin: 20px;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.main .navigation .quest {
-    background-color: #313131;
-    width: 115px;
-    height: 115px;
-    border-radius: 10px;
-    border-top: 2px solid #ADEEA1;
+.main .menu .navigation > *:first-child {
+    background-color: #000F2C;
+}
+
+.main .menu .navigation > * {
+    font-size: 13px;
+    width: 50%;
+    height: 60px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clicker .coinsAmount {
+    width: 100%;
+    margin: 70px 0 20px 0;
+    text-align: center;
+    font-size: 40px;
+}
+
+.clicker .coinsAmount > * {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+.clicker .clickerBtn {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.clicker .clickerBtn img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.rewards {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 50px 0;
+}
+
+.rewards .reward {
+    background-color: rgba(255, 255, 255, 0.25);
+    text-align: center;
+    padding: 10px 30px;
+    border-radius: 15px;
 }
