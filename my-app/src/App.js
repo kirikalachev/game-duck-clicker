@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import './App.css';
 import Stats from './header.js';
 import MainPart from './main.js';
