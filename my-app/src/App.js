@@ -4,11 +4,37 @@ import MainPart from './main.js';
 import { useState, useEffect } from 'react';
 
 function App() {
+
   const [scale, setScale] = useState(1);
     const [coinsCounter, setCoinsCounter] = useState(0);
     const [capacity, updateCapacity] = useState(100);
-    const [profit, updateProfit] = useState(0);
-    const [level, updateLevel] = useState(1);
+    const [level, updateLevel] = useState(0);
+
+    const calculateLevel = (coinsCounter) => {
+      if (coinsCounter >= 4500) {
+        return 10;
+    } else if (coinsCounter >= 3600) {
+        return 9;
+    } else if (coinsCounter >= 2800) {
+        return 8;
+    } else if (coinsCounter >= 2100) {
+        return 7;
+    } else if (coinsCounter >= 1500) {
+        return 6;
+    } else if (coinsCounter >= 1000) {
+        return 5;
+    } else if (coinsCounter >= 600) {
+        return 4;
+    } else if (coinsCounter >= 400) {
+        return 3;
+    } else if (coinsCounter >= 150) {
+        return 2;
+    } else if (coinsCounter >= 100) {
+        return 1;
+    } else {
+        return 0;
+    }
+  };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -27,6 +53,13 @@ function App() {
             setCoinsCounter(prev => prev + 1);
         }
     };
+
+    useEffect(() => {
+      const newLevel = calculateLevel(coinsCounter);
+      if (newLevel > level) {
+          updateLevel(newLevel);
+      }
+    }, [coinsCounter, level]);
 
     const buttonStyle = {
         transform: `scale(${scale})`,
@@ -47,8 +80,6 @@ function App() {
         handleClick={handleClick}
         coinsCounter={coinsCounter}
         capacity={capacity}
-        profit={profit}
-        level={level}
       />
     </div>
   );

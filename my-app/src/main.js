@@ -3,7 +3,7 @@ import clicker from './clicker.png';
 import reward from './reward.png';
 import question from './question.png';
 
-function MainPart({buttonStyle, handleClick, coinsCounter, capacity, profit, level}) {
+function MainPart({buttonStyle, handleClick, coinsCounter, capacity}) {
     return (
       <div className="main">
         <div className="menu">

@@ -1,4 +1,9 @@
-function Stats() {
+function Stats({level}) {
+  const progressBar = level * 10;
+  const progressBarStyle = {
+      maxWidth: `${progressBar}%`
+  };
+  
   return (
     <div className="stats">
         <div className="profile-stats">
@@ -7,9 +12,9 @@ function Stats() {
         </div>
         
         <div className="level">
-          <p>2/100</p>
+          <p>{level}/10</p>
           <div className="progressBar">
-            <div className="progress"></div>
+            <div className="progress" style={progressBarStyle}></div>
           </div>
         </div>
     </div>
