@@ -1,34 +1,63 @@
-import Cookies from 'js-cookie';
 import './App.css';
 import Stats from './header.js';
 import MainPart from './main.js';
 import { useState, useEffect } from 'react';
 
-function App() {
+import clicker1 from './clicker1.png';
+import clicker2 from './clicker2.png';
+import clicker4 from './clicker4.png';
+import clicker6 from './clicker6.png';
+import clicker8 from './clicker8.png';
+import clicker10 from './clicker10.png';
 
-  const [scale, setScale] = useState(1);
-    const [coinsCounter, setCoinsCounter] = useState(0);
-    const [capacity, updateCapacity] = useState(100);
+function ComingSoon() {
+  const blurApp = document.querySelector('.App');
+  blurApp.className.add('blurred');
+  return (
+      <>
+          <span className="comingSoon">t</span>
+          <div className="comingSoon">
+              <p>Coming soon</p>
+          </div>
+      </>
+  )
+}
+
+function App() {
+    const [clicker, setClicker] = useState(clicker1)
+    const [scale, setScale] = useState(1);
+    const initialCount = () => Number(window.localStorage.getItem('Coins amount'));
+    const [coinsCounter, setCoinsCounter] = useState(initialCount);
+    const [capacity, updateCapacity] = useState(1000);
     const [level, updateLevel] = useState(0);
+
+    useEffect(() => {
+      window.localStorage.setItem('Coins amount', coinsCounter);
+    }, [coinsCounter]);
 
     const calculateLevel = (coinsCounter) => {
       if (coinsCounter >= 4500) {
+        setClicker(clicker10);
         return 10;
     } else if (coinsCounter >= 3600) {
         return 9;
     } else if (coinsCounter >= 2800) {
+      setClicker(clicker8);
         return 8;
     } else if (coinsCounter >= 2100) {
         return 7;
     } else if (coinsCounter >= 1500) {
+      setClicker(clicker6);
         return 6;
     } else if (coinsCounter >= 1000) {
         return 5;
     } else if (coinsCounter >= 600) {
+      setClicker(clicker4);
         return 4;
     } else if (coinsCounter >= 400) {
         return 3;
     } else if (coinsCounter >= 150) {
+      setClicker(clicker2);
         return 2;
     } else if (coinsCounter >= 100) {
         return 1;
@@ -39,8 +68,8 @@ function App() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            updateCapacity(prev => (prev < 100 ? prev + 1 : 100));
-        }, 2000);
+            updateCapacity(prev => (prev < 1000 ? prev + 1 : 1000));
+        }, 100);
 
         return () => clearInterval(interval);
     }, []);
@@ -81,6 +110,8 @@ function App() {
         handleClick={handleClick}
         coinsCounter={coinsCounter}
         capacity={capacity}
+        clicker={clicker}
+        comingSoon={ComingSoon}
       />
     </div>
   );

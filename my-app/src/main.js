@@ -1,9 +1,12 @@
 import coin from './coin.png';
-import clicker from './clicker.png';
+
 import reward from './reward.png';
 import question from './question.png';
+// import { useState } from 'react';
 
-function MainPart({buttonStyle, handleClick, coinsCounter, capacity}) {
+
+function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, comingSoon }) {
+    
     return (
       <div className="main">
         <div className="menu">
@@ -14,7 +17,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity}) {
                     </p>
                 </div>
 
-                <div className="shop">
+                <div className="shop" onClick={comingSoon}>
                     <p>
                         Shop
                     </p>

@@ -14,6 +14,10 @@ body {
     overflow-x: hidden;
 }
 
+.blurred {
+    filter: blur(8px);
+}
+
 .gameName {
     font-size: 20px;
     font-weight: 500;
@@ -185,6 +189,11 @@ body {
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    width: 60%;
+    height: auto;
+    border: 10px solid #DBD095;
+    box-shadow: 0 0px 30px 1px #000613;
+    border-radius: 50%;
 }
 
 .rewards {
@@ -200,4 +209,22 @@ body {
     text-align: center;
     padding: 10px 30px;
     border-radius: 15px;
+}
+
+div.comingSoon {
+    background-color: rgba(255, 255, 255, 0.25);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s;
+    width: 50%;
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.App.comingSoon {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
 }
