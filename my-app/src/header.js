@@ -7,7 +7,9 @@ function Stats({level}) {
   return (
     <div className="stats">
         <div className="profile-stats">
-            <div className="picture"></div>
+            <div className="picture">
+              <img src='https://picsum.photos/45/45' alt="profile pic"></img>
+            </div>
             <p className="name">user 6338</p>
         </div>
         

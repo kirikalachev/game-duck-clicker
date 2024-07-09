@@ -1,12 +1,23 @@
 import coin from './coin.png';
-
+import { useState } from 'react';
 import reward from './reward.png';
 import question from './question.png';
-// import { useState } from 'react';
 
+function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
+      const [isPopupVisible, setIsPopupVisible] = useState(false);
+      const [fadeOut, setFadeOut] = useState(false);
+  
+      function showPopup() {
+          setIsPopupVisible(true);
+          setFadeOut(false);
+          setTimeout(() => {
+              setFadeOut(true);
+              setTimeout(() => {
+                  setIsPopupVisible(false);
+              }, 400); // Match this duration with the fade-out animation duration
+          }, 1200); // Automatically start fade-out after 1 second
+      }
 
-function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, comingSoon }) {
-    
     return (
       <div className="main">
         <div className="menu">
@@ -17,7 +28,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, co
                     </p>
                 </div>
 
-                <div className="shop" onClick={comingSoon}>
+                <div className="shop" onClick={showPopup}>
                     <p>
                         Shop
                     </p>
@@ -58,16 +69,25 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, co
         </div>
 
         <div className="rewards">
-            <div className="reward">
+            <div className="reward" onClick={showPopup}>
                 <img src={reward} alt='text'></img>
                 <p>Daily Reward</p>
             </div>
 
-            <div className="reward">
+            <div className="reward" onClick={showPopup}>
                 <img src={question} alt='text'></img>
                 <p>Daily Question</p>
             </div>
         </div>
+
+        {isPopupVisible && (
+            <div className='popup'>
+                <span className={`comingSoon ${fadeOut ? 'fadeOut' : ''}`}></span>
+                <div className={`comingSoon ${fadeOut ? 'fadeOut' : ''}`}>
+                    <p>Coming soon</p>
+                </div>
+            </div>
+            )}
       </div>
     );
   }

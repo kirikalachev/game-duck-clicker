@@ -10,30 +10,27 @@ import clicker6 from './clicker6.png';
 import clicker8 from './clicker8.png';
 import clicker10 from './clicker10.png';
 
-function ComingSoon() {
-  const blurApp = document.querySelector('.App');
-  blurApp.className.add('blurred');
-  return (
-      <>
-          <span className="comingSoon">t</span>
-          <div className="comingSoon">
-              <p>Coming soon</p>
-          </div>
-      </>
-  )
-}
+
 
 function App() {
     const [clicker, setClicker] = useState(clicker1)
     const [scale, setScale] = useState(1);
-    const initialCount = () => Number(window.localStorage.getItem('Coins amount'));
-    const [coinsCounter, setCoinsCounter] = useState(initialCount);
-    const [capacity, updateCapacity] = useState(1000);
+    const initialCoinsCount = () => Number(window.localStorage.getItem('Coins amount'));
+    const [coinsCounter, setCoinsCounter] = useState(initialCoinsCount);
+
+    const initialCapacity = () => Number(window.localStorage.getItem('Capacity'));
+    const [capacity, updateCapacity] = useState(initialCapacity);
+
     const [level, updateLevel] = useState(0);
 
     useEffect(() => {
       window.localStorage.setItem('Coins amount', coinsCounter);
     }, [coinsCounter]);
+
+    useEffect(() => {
+      window.localStorage.setItem('Capacity', capacity);
+    }, [capacity]);
+
 
     const calculateLevel = (coinsCounter) => {
       if (coinsCounter >= 4500) {
@@ -69,7 +66,7 @@ function App() {
     useEffect(() => {
         const interval = setInterval(() => {
             updateCapacity(prev => (prev < 1000 ? prev + 1 : 1000));
-        }, 100);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -104,14 +101,13 @@ function App() {
       <Stats 
         level={level}
       />
-
+      <span className='blurBG'></span>
       <MainPart 
         buttonStyle={buttonStyle}
         handleClick={handleClick}
         coinsCounter={coinsCounter}
         capacity={capacity}
         clicker={clicker}
-        comingSoon={ComingSoon}
       />
     </div>
   );
