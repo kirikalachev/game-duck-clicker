@@ -1,22 +1,33 @@
 import coin from './coin.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import reward from './reward.png';
 import question from './question.png';
 
 function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
       const [isPopupVisible, setIsPopupVisible] = useState(false);
       const [fadeOut, setFadeOut] = useState(false);
+      const [clickedClass, setClickedClass] = useState('')
   
-      function showPopup() {
-          setIsPopupVisible(true);
-          setFadeOut(false);
-          setTimeout(() => {
-              setFadeOut(true);
-              setTimeout(() => {
-                  setIsPopupVisible(false);
-              }, 400); // Match this duration with the fade-out animation duration
-          }, 1200); // Automatically start fade-out after 1 second
-      }
+      useEffect (
+        () => {
+            if (isPopupVisible) {
+                setIsPopupVisible(true);
+                setFadeOut(false);
+                setTimeout(() => {
+                    setFadeOut(true);
+                    setTimeout(() => {
+                        setIsPopupVisible(false);
+                        setIsPopupVisible(false);
+                        setClickedClass('');
+                    }, 400); 
+                }, 1200);
+            }
+        }, [isPopupVisible])
+
+        function handleElementClick(className) {
+            setClickedClass(className);
+            setIsPopupVisible(true);
+        }
 
     return (
       <div className="main">
@@ -28,7 +39,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
                     </p>
                 </div>
 
-                <div className="shop" onClick={showPopup}>
+                <div className="shop" onClick={() => handleElementClick('shop')}>
                     <p>
                         Shop
                     </p>
@@ -69,22 +80,44 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
         </div>
 
         <div className="rewards">
-            <div className="reward" onClick={showPopup}>
+            <div className="reward" onClick={() => handleElementClick('reward')}>
                 <img src={reward} alt='text'></img>
                 <p>Daily Reward</p>
             </div>
 
-            <div className="reward" onClick={showPopup}>
+            <div className="reward" onClick={() => handleElementClick('reward')}>
                 <img src={question} alt='text'></img>
                 <p>Daily Question</p>
             </div>
         </div>
 
-        {isPopupVisible && (
+        {isPopupVisible && clickedClass==='shop' && (
             <div className='popup'>
                 <span className={`comingSoon ${fadeOut ? 'fadeOut' : ''}`}></span>
                 <div className={`comingSoon ${fadeOut ? 'fadeOut' : ''}`}>
                     <p>Coming soon</p>
+                </div>
+            </div>
+            )}
+
+        {isPopupVisible && clickedClass==='reward' && (
+            <div className="dailyRewardPopup">
+                <div className='top'>
+                    <img src={reward} alt='Daily reward'></img>
+                    <h2>
+                        Daily reward
+                    </h2>
+
+                    <p>
+                        Claim your daily reward!
+                    </p>
+                </div>
+
+                <div className='content'>
+
+                </div>
+                <div className='claimBtn'>
+
                 </div>
             </div>
             )}
