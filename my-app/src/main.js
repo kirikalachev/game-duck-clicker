@@ -6,7 +6,7 @@ import question from './question.png';
 function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
       const [isPopupVisible, setIsPopupVisible] = useState(false);
       const [fadeOut, setFadeOut] = useState(false);
-      const [clickedClass, setClickedClass] = useState('')
+      const [clickedClass, setClickedClass] = useState('');
   
       useEffect (
         () => {
@@ -17,10 +17,9 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
                     setFadeOut(true);
                     setTimeout(() => {
                         setIsPopupVisible(false);
-                        setIsPopupVisible(false);
                         setClickedClass('');
                     }, 400); 
-                }, 1200);
+                }, 13200);
             }
         }, [isPopupVisible])
 
@@ -80,12 +79,12 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
         </div>
 
         <div className="rewards">
-            <div className="reward" onClick={() => handleElementClick('reward')}>
+            <div className="reward" onClick={() => handleElementClick('dailyReward')}>
                 <img src={reward} alt='text'></img>
                 <p>Daily Reward</p>
             </div>
 
-            <div className="reward" onClick={() => handleElementClick('reward')}>
+            <div className="reward" onClick={() => handleElementClick('questionReward')}>
                 <img src={question} alt='text'></img>
                 <p>Daily Question</p>
             </div>
@@ -100,7 +99,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
             </div>
             )}
 
-        {isPopupVisible && clickedClass==='reward' && (
+        {isPopupVisible && clickedClass==='dailyReward' && (
             <div className="dailyRewardPopup">
                 <div className='top'>
                     <img src={reward} alt='Daily reward'></img>
@@ -114,10 +113,35 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
                 </div>
 
                 <div className='content'>
+                    <img src={coin} alt='Coins amount: '></img>
+                    <p>
+                        500
+                    </p>
+                </div>
+                <div className='claimBtn'>
+                    Claim
+                </div>
+            </div>
+            )}
+
+        {isPopupVisible && clickedClass==='questionReward' && (
+            <div className="dailyRewardPopup">
+                <div className='top'>
+                    <img src={question} alt='Daily question'></img>
+                    <h2>
+                        Daily question
+                    </h2>
+
+                    <p>
+                        Answer the question to win more coins
+                    </p>
+                </div>
+
+                <div className='content'>
 
                 </div>
                 <div className='claimBtn'>
-
+                    Claim
                 </div>
             </div>
             )}

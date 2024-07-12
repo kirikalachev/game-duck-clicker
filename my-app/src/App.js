@@ -1,4 +1,5 @@
 import './App.css';
+import './popups.css';
 import Stats from './header.js';
 import MainPart from './main.js';
 import { useState, useEffect } from 'react';

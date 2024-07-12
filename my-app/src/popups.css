@@ -1,0 +1,40 @@
+.dailyRewardPopup {
+    background: linear-gradient( #6e1254, #0a3179);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 60%;
+    text-align: center;
+    padding: 40px 0;
+    border-radius: 15px;
+    z-index: 2;
+    box-shadow: 0 0px 30px 1px #000613;
+    border-radius: 70px 70px 0 0;
+}
+
+.dailyRewardPopup .top img {
+    width: 30%;
+    height: auto;
+}
+
+.dailyRewardPopup .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    margin: 5px;
+}
+
+.dailyRewardPopup .content img {
+    width: 10%;
+    height: auto;
+    margin-right: 5px;
+}
+
+.dailyRewardPopup .claimBtn {
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 50%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
+}
