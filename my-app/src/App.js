@@ -109,6 +109,7 @@ function App() {
         coinsCounter={coinsCounter}
         capacity={capacity}
         clicker={clicker}
+        setCoinsCounter={setCoinsCounter}
       />
     </div>
   );

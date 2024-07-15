@@ -3,29 +3,53 @@ import { useEffect, useState } from 'react';
 import reward from './reward.png';
 import question from './question.png';
 
-function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
+function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, setCoinsCounter}) {
       const [isPopupVisible, setIsPopupVisible] = useState(false);
       const [fadeOut, setFadeOut] = useState(false);
-      const [clickedClass, setClickedClass] = useState('');
-  
+
+      const [isRewardVisible, setIsRewardVisible] = useState(false);
+      const [clickedClass, setClickedClass] = useState('');   
+
+      const [randomNumber, setRandomNumber] = useState(0);
+
+        function getRandomNumber() {
+        const number = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+        setRandomNumber(number);
+      }
+
+      function claimDailyReward() {
+          setCoinsCounter(prev => prev + randomNumber);
+          setIsRewardVisible(false);
+          setClickedClass('');
+      }
+
+      function comingSoonPopup() {
+        setIsPopupVisible(true);
+        setFadeOut(false);
+        setTimeout(() => {
+            setFadeOut(true);
+            setTimeout(() => {
+                setIsPopupVisible(false);
+            }, 400); 
+        }, 1000);
+      }
+
+      function close() {
+        setIsRewardVisible(false);
+        setClickedClass('');
+      }
+
       useEffect (
         () => {
-            if (isPopupVisible) {
-                setIsPopupVisible(true);
-                setFadeOut(false);
-                setTimeout(() => {
-                    setFadeOut(true);
-                    setTimeout(() => {
-                        setIsPopupVisible(false);
-                        setClickedClass('');
-                    }, 400); 
-                }, 13200);
+            if (isRewardVisible) {
+                setIsRewardVisible(true);
             }
-        }, [isPopupVisible])
+        }, [isRewardVisible])
 
         function handleElementClick(className) {
             setClickedClass(className);
-            setIsPopupVisible(true);
+            setIsRewardVisible(true);
+            getRandomNumber();
         }
 
     return (
@@ -38,7 +62,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
                     </p>
                 </div>
 
-                <div className="shop" onClick={() => handleElementClick('shop')}>
+                <div className="shop" onClick={comingSoonPopup}>
                     <p>
                         Shop
                     </p>
@@ -90,7 +114,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
             </div>
         </div>
 
-        {isPopupVisible && clickedClass==='shop' && (
+        {isPopupVisible && (
             <div className='popup'>
                 <span className={`comingSoon ${fadeOut ? 'fadeOut' : ''}`}></span>
                 <div className={`comingSoon ${fadeOut ? 'fadeOut' : ''}`}>
@@ -99,8 +123,9 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
             </div>
             )}
 
-        {isPopupVisible && clickedClass==='dailyReward' && (
+        {isRewardVisible && clickedClass==='dailyReward' && (
             <div className="dailyRewardPopup">
+                <button onClick={close}>x</button>
                 <div className='top'>
                     <img src={reward} alt='Daily reward'></img>
                     <h2>
@@ -115,17 +140,18 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
                 <div className='content'>
                     <img src={coin} alt='Coins amount: '></img>
                     <p>
-                        500
+                        {randomNumber}
                     </p>
                 </div>
-                <div className='claimBtn'>
+                <div className='claimBtn' onClick={claimDailyReward}>
                     Claim
                 </div>
             </div>
             )}
 
-        {isPopupVisible && clickedClass==='questionReward' && (
+        {isRewardVisible && clickedClass==='questionReward' && (
             <div className="dailyRewardPopup">
+                <button onClick={close}>x</button>
                 <div className='top'>
                     <img src={question} alt='Daily question'></img>
                     <h2>
@@ -138,7 +164,7 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker}) {
                 </div>
 
                 <div className='content'>
-
+                    
                 </div>
                 <div className='claimBtn'>
                     Claim
