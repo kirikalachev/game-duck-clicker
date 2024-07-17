@@ -2,7 +2,7 @@ import './App.css';
 import './popups.css';
 import Stats from './header.js';
 import MainPart from './main.js';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import clicker1 from './clicker1.png';
 import clicker2 from './clicker2.png';
@@ -95,7 +95,8 @@ function App() {
     };
 
   return (
-    <div className="App">
+    <Router>
+          <div className="App">
       <div className='gameName'>
         TAP GAME
       </div>
@@ -103,15 +104,23 @@ function App() {
         level={level}
       />
       <span className='blurBG'></span>
-      <MainPart 
-        buttonStyle={buttonStyle}
-        handleClick={handleClick}
-        coinsCounter={coinsCounter}
-        capacity={capacity}
-        clicker={clicker}
-        setCoinsCounter={setCoinsCounter}
-      />
+
+      <Routes>
+        <Route path='/' element={
+                <MainPart 
+                buttonStyle={buttonStyle}
+                handleClick={handleClick}
+                coinsCounter={coinsCounter}
+                capacity={capacity}
+                clicker={clicker}
+                setCoinsCounter={setCoinsCounter}
+              />
+        }/>
+        <Route path="/shop" element={<Shop />} />
+      </Routes>
+
     </div>
+    </Router>
   );
 }
 
