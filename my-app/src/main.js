@@ -10,17 +10,46 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, se
       const [isRewardVisible, setIsRewardVisible] = useState(false);
       const [clickedClass, setClickedClass] = useState('');   
 
-      const [randomNumber, setRandomNumber] = useState(0);
+      const [randomNumber, setRandomNumber] = useState(10);
+
+      const [canClaimReward, setCanClaimReward] = useState(true)
 
         function getRandomNumber() {
-        const number = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+        const number = Math.floor(Math.random() * (100 - 25 + 1)) + 1;
         setRandomNumber(number);
       }
 
+      useEffect(() => {
+        checkDailyRewardAvailability();
+      }, [])
+
       function claimDailyReward() {
-          setCoinsCounter(prev => prev + randomNumber);
+          if(!canClaimReward) return; 
           setIsRewardVisible(false);
           setClickedClass('');
+          saveLastClaimDate();
+          getRandomNumber();
+          setCoinsCounter(prev => prev + randomNumber);
+          setCanClaimReward(false);
+      }
+
+      function saveLastClaimDate() {
+        const currentDate = new Date().toISOString().split('T')[0];
+        localStorage.setItem('lastClaimDate', currentDate);
+      }
+
+      function checkDailyRewardAvailability() {
+        const lastClaimDate = localStorage.getItem('lastClaimDate');
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        const lastClaimDateObject = new Date(lastClaimDate);
+        const currentDateObject = new Date(currentDate);
+
+        if (!lastClaimDate || lastClaimDateObject < currentDateObject) {
+            setCanClaimReward(true);
+        } else {
+            setCanClaimReward(false);
+        }
       }
 
       function comingSoonPopup() {
@@ -49,7 +78,6 @@ function MainPart({buttonStyle, handleClick, coinsCounter, capacity, clicker, se
         function handleElementClick(className) {
             setClickedClass(className);
             setIsRewardVisible(true);
-            getRandomNumber();
         }
 
     return (
